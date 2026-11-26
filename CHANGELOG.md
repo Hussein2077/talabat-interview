@@ -1,3 +1,3 @@
 ## 1.0.0
 
-- Initial version.
+- Mars Rover kata: parser, mission control with plateau and collision rules, command-line runner and tests.
