@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart analyze
+      - run: dart test
+      - name: Run the kata example
+        run: |
+          printf '5 5\n1 2 N\nLMLMLMLMM\n3 3 E\nMMRMMRMRRM\n' > input.txt
+          output=$(dart run bin/talabat_interview.dart input.txt)
+          echo "$output"
+          test "$output" = "$(printf '1 3 N\n5 1 E')"
